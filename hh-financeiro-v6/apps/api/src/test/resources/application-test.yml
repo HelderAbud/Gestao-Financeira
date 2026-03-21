@@ -1,0 +1,20 @@
+spring:
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration
+  datasource:
+    # NON_KEYWORDS: H2 2.x reserva MONTH/YEAR; sem isso o ddl-auto falha nas colunas month/year.
+    url: jdbc:h2:mem:hh_finance;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE;DEFAULT_NULL_ORDERING=HIGH;NON_KEYWORDS=MONTH,YEAR
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+  flyway:
+    enabled: false
+
+hh:
+  jwt:
+    secret: test-secret-at-least-32-characters-long!!
+    expiration-ms: 3600000

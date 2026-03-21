@@ -1,0 +1,607 @@
+{
+  "openapi": "3.0.1",
+  "info": { "title": "HH Financeiro API", "version": "v1" },
+  "paths": {
+    "/api/v1/auth/register": {
+      "post": {
+        "operationId": "register",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/RegisterRequest" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/TokenResponse" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/auth/login": {
+      "post": {
+        "operationId": "login",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/LoginRequest" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/TokenResponse" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/users/me": {
+      "get": {
+        "operationId": "me",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/UserMeResponse" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/reports/monthly-summary": {
+      "get": {
+        "operationId": "monthlySummary",
+        "parameters": [
+          { "name": "year", "in": "query", "required": true, "schema": { "type": "integer" } },
+          { "name": "month", "in": "query", "required": true, "schema": { "type": "integer" } }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/MonthlySummaryResponse" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/expenses": {
+      "get": {
+        "operationId": "listExpenses",
+        "parameters": [
+          { "name": "year", "in": "query", "schema": { "type": "integer" } },
+          { "name": "month", "in": "query", "schema": { "type": "integer" } }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/ExpenseResponse" }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createExpense",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/ExpenseCreateRequest" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ExpenseResponse" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/expenses/{id}": {
+      "put": {
+        "operationId": "updateExpense",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "integer", "format": "int64" } }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/ExpenseCreateRequest" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ExpenseResponse" }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteExpense",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "integer", "format": "int64" } }
+        ],
+        "responses": { "200": { "description": "OK" } }
+      }
+    },
+    "/api/v1/incomes": {
+      "get": {
+        "operationId": "listIncomes",
+        "parameters": [
+          { "name": "year", "in": "query", "schema": { "type": "integer" } },
+          { "name": "month", "in": "query", "schema": { "type": "integer" } }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/IncomeResponse" }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createIncome",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/IncomeCreateRequest" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/IncomeResponse" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/incomes/{id}": {
+      "put": {
+        "operationId": "updateIncome",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "integer", "format": "int64" } }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/IncomeCreateRequest" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/IncomeResponse" }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteIncome",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "integer", "format": "int64" } }
+        ],
+        "responses": { "200": { "description": "OK" } }
+      }
+    },
+    "/api/v1/goals": {
+      "get": {
+        "operationId": "listGoals",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/GoalResponse" }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createGoal",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/GoalCreateRequest" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/GoalResponse" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/goals/{id}": {
+      "put": {
+        "operationId": "updateGoal",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "integer", "format": "int64" } }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/GoalCreateRequest" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/GoalResponse" }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteGoal",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "integer", "format": "int64" } }
+        ],
+        "responses": { "200": { "description": "OK" } }
+      }
+    },
+    "/api/v1/goals/{id}/deposits": {
+      "post": {
+        "operationId": "createGoalDeposit",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "integer", "format": "int64" } }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/GoalDepositRequest" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/GoalDepositResponse" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/subscriptions": {
+      "get": {
+        "operationId": "listSubscriptions",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/SubscriptionResponse" }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createSubscription",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/SubscriptionCreateRequest" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/SubscriptionResponse" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/subscriptions/{id}": {
+      "put": {
+        "operationId": "updateSubscription",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "integer", "format": "int64" } }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/SubscriptionCreateRequest" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/SubscriptionResponse" }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteSubscription",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "integer", "format": "int64" } }
+        ],
+        "responses": { "200": { "description": "OK" } }
+      }
+    },
+    "/api/v1/budgets": {
+      "get": {
+        "operationId": "listBudgets",
+        "parameters": [
+          { "name": "year", "in": "query", "required": true, "schema": { "type": "integer" } },
+          { "name": "month", "in": "query", "required": true, "schema": { "type": "integer" } }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/BudgetResponse" }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "upsertBudget",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/BudgetUpsertRequest" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/BudgetResponse" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/budgets/{id}": {
+      "delete": {
+        "operationId": "deleteBudget",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "integer", "format": "int64" } }
+        ],
+        "responses": { "200": { "description": "OK" } }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "RegisterRequest": {
+        "type": "object",
+        "properties": {
+          "email": { "type": "string" },
+          "password": { "type": "string" }
+        },
+        "required": ["email", "password"]
+      },
+      "LoginRequest": {
+        "type": "object",
+        "properties": {
+          "email": { "type": "string" },
+          "password": { "type": "string" }
+        },
+        "required": ["email", "password"]
+      },
+      "TokenResponse": {
+        "type": "object",
+        "properties": { "accessToken": { "type": "string" } }
+      },
+      "UserMeResponse": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "format": "int64" },
+          "email": { "type": "string" }
+        }
+      },
+      "MonthlySummaryResponse": {
+        "type": "object",
+        "properties": {
+          "year": { "type": "integer" },
+          "month": { "type": "integer" },
+          "totalIncome": { "type": "number" },
+          "totalExpenseOutflows": { "type": "number" },
+          "totalInvestments": { "type": "number" },
+          "balance": { "type": "number" }
+        }
+      },
+      "ExpenseCreateRequest": {
+        "type": "object",
+        "properties": {
+          "description": { "type": "string" },
+          "amount": { "type": "number" },
+          "category": { "type": "string" },
+          "expenseType": { "type": "string", "enum": ["FIXED", "VARIABLE"] },
+          "month": { "type": "integer" },
+          "year": { "type": "integer" },
+          "entryDate": { "type": "string", "format": "date" },
+          "notes": { "type": "string" },
+          "subscriptionId": { "type": "integer", "format": "int64" }
+        },
+        "required": ["description", "amount", "category", "expenseType", "month", "year", "entryDate"]
+      },
+      "ExpenseResponse": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "format": "int64" },
+          "description": { "type": "string" },
+          "amount": { "type": "number" },
+          "category": { "type": "string" },
+          "expenseType": { "type": "string", "enum": ["FIXED", "VARIABLE"] },
+          "month": { "type": "integer" },
+          "year": { "type": "integer" },
+          "entryDate": { "type": "string", "format": "date" },
+          "notes": { "type": "string" },
+          "subscriptionId": { "type": "integer", "format": "int64" }
+        }
+      },
+      "IncomeCreateRequest": {
+        "type": "object",
+        "properties": {
+          "description": { "type": "string" },
+          "amount": { "type": "number" },
+          "category": { "type": "string" },
+          "month": { "type": "integer" },
+          "year": { "type": "integer" },
+          "entryDate": { "type": "string", "format": "date" },
+          "notes": { "type": "string" }
+        },
+        "required": ["description", "amount", "category", "month", "year", "entryDate"]
+      },
+      "IncomeResponse": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "format": "int64" },
+          "description": { "type": "string" },
+          "amount": { "type": "number" },
+          "category": { "type": "string" },
+          "month": { "type": "integer" },
+          "year": { "type": "integer" },
+          "entryDate": { "type": "string", "format": "date" },
+          "notes": { "type": "string" }
+        }
+      },
+      "GoalCreateRequest": {
+        "type": "object",
+        "properties": {
+          "description": { "type": "string" },
+          "targetAmount": { "type": "number" }
+        },
+        "required": ["description", "targetAmount"]
+      },
+      "GoalResponse": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "format": "int64" },
+          "description": { "type": "string" },
+          "targetAmount": { "type": "number" },
+          "currentAmount": { "type": "number" }
+        }
+      },
+      "GoalDepositRequest": {
+        "type": "object",
+        "properties": { "amount": { "type": "number" } },
+        "required": ["amount"]
+      },
+      "GoalDepositResponse": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "format": "int64" },
+          "amount": { "type": "number" },
+          "recordedAt": { "type": "string", "format": "date-time" }
+        }
+      },
+      "SubscriptionCreateRequest": {
+        "type": "object",
+        "properties": {
+          "description": { "type": "string" },
+          "amount": { "type": "number" },
+          "category": { "type": "string" }
+        },
+        "required": ["description", "amount", "category"]
+      },
+      "SubscriptionResponse": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "format": "int64" },
+          "description": { "type": "string" },
+          "amount": { "type": "number" },
+          "category": { "type": "string" }
+        }
+      },
+      "BudgetUpsertRequest": {
+        "type": "object",
+        "properties": {
+          "year": { "type": "integer" },
+          "month": { "type": "integer" },
+          "category": { "type": "string" },
+          "plannedAmount": { "type": "number" }
+        },
+        "required": ["year", "month", "category", "plannedAmount"]
+      },
+      "BudgetResponse": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "format": "int64" },
+          "year": { "type": "integer" },
+          "month": { "type": "integer" },
+          "category": { "type": "string" },
+          "plannedAmount": { "type": "number" }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+# Blueprint de exemplo — Render.com
+# Ajuste o nome do serviço, região e variáveis; ligue o repositório no dashboard Render.
+# Documentação: https://render.com/docs/blueprint-spec
+
+services:
+  - type: web
+    name: hh-finance-api
+    runtime: docker
+    dockerfilePath: ./apps/api/Dockerfile
+    dockerContext: ./apps/api
+    plan: free
+    envVars:
+      - key: SPRING_DATASOURCE_URL
+        sync: false
+      - key: SPRING_DATASOURCE_USERNAME
+        sync: false
+      - key: SPRING_DATASOURCE_PASSWORD
+        sync: false
+      - key: HH_JWT_SECRET
+        generateValue: true
+      - key: HH_CORS_ORIGINS
+        sync: false

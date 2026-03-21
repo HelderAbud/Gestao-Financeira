@@ -1,0 +1,19 @@
+{
+  "name": "@hh/types",
+  "version": "0.0.1",
+  "private": true,
+  "types": "./src/api.d.ts",
+  "exports": {
+    ".": {
+      "types": "./src/api.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "node -e \"require('fs').accessSync('src/api.d.ts')\"",
+    "generate": "openapi-typescript http://localhost:8080/v3/api-docs -o ./src/api.d.ts",
+    "generate:from-snapshot": "openapi-typescript ./openapi.snapshot.json -o ./src/api.d.ts"
+  },
+  "devDependencies": {
+    "openapi-typescript": "^7.6.1"
+  }
+}

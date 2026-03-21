@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>H&H Gestão Financeira v5</title>
+
+<link rel="stylesheet" href="style.css">
+<link rel="manifest" href="manifest.json">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+
+</head>
+
+<body>
+
+<div id="lock">
+  <div class="lcard">
+    <div class="llogo">💰</div>
+    <div class="lbrand">H & H Gestão Financeira</div>
+    <div class="lsub">Controle financeiro pessoal</div>
+    <span class="lver">Versão 5.0</span>
+    <div class="llabel">Senha de acesso</div>
+    <input class="linput" id="lock-inp" type="password" placeholder="••••••••" maxlength="30" onkeydown="if(event.key==='Enter')entrar()"/>
+    <button class="lbtn" onclick="entrar()">🔓 Entrar</button>
+    <div class="lerr" id="lock-err"></div>
+    <div class="lhint">Primeiro acesso — defina uma senha<br><a onclick="abrirSenha(true)">Criar senha</a></div>
+  </div>
+</div>
+
+<div id="app">
+  <aside class="sidebar">
+    <div class="logo-area">
+      <div class="logo-mark">💰</div>
+      <div>
+        <div class="logo-name">H & H Gestão</div>
+        <div class="logo-sub">Financeira Pessoal</div>
+        <div class="logo-ver">v5.0</div>
+      </div>
+    </div>
+    <div class="nav-section">
+      <div class="nav-lbl">Painel</div>
+      <div class="nav-item active" onclick="goTab('resumo',this)"><span class="nav-icon">📊</span>Resumo</div>
+      <div class="nav-lbl">Lançamentos</div>
+      <div class="nav-item" onclick="goTab('despesas',this)"><span class="nav-icon">💸</span>Despesas</div>
+      <div class="nav-item" onclick="goTab('receitas',this)"><span class="nav-icon">💵</span>Receitas</div>
+      <div class="nav-lbl">Controle</div>
+      <div class="nav-item" onclick="goTab('metas',this)"><span class="nav-icon">🎯</span>Metas</div>
+      <div class="nav-item" onclick="goTab('assinaturas',this)"><span class="nav-icon">🔄</span>Assinaturas</div>
+      <div class="nav-item" onclick="goTab('planejamento',this)"><span class="nav-icon">📋</span>Planejamento</div>
+      <div class="nav-item" onclick="goTab('anual',this)"><span class="nav-icon">📈</span>Visão Anual</div>
+    </div>
+    <div class="sidebar-footer">
+      <div class="save-ind"><div class="dot"></div><span id="save-txt">Dados salvos</span></div>
+      <button class="btn-lock" onclick="bloquear()">🔒 Bloquear</button>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="topbar">
+      <div>
+        <div class="page-title" id="page-title">Resumo do Mês</div>
+        <div class="page-sub" id="mes-label"></div>
+      </div>
+      <div class="topbar-right">
+        <select class="ssel" id="sel-mes"></select>
+        <select class="ssel" id="sel-ano"></select>
+        <button class="btn-top" onclick="exportar()">⬇ Backup</button>
+        <label class="btn-top" style="cursor:pointer">⬆ Importar<input type="file" accept=".hhbak,.json" onchange="importar(event)" style="display:none"/></label>
+        <button class="btn-top" onclick="abrirSenha()">🔑 Senha</button>
+      </div>
+    </div>
+
+    <div class="metrics">
+      <div class="mc g"><div class="mc-lbl">Entradas</div><div class="mc-val" id="m-ent">R$ 0</div><div class="mc-sub" id="m-ent-sub"></div></div>
+      <div class="mc r"><div class="mc-lbl">Saídas</div><div class="mc-val" id="m-sai">R$ 0</div><div class="mc-sub" id="m-sai-sub"></div></div>
+      <div class="mc b"><div class="mc-lbl">Investido</div><div class="mc-val" id="m-inv">R$ 0</div></div>
+      <div class="mc a"><div class="mc-lbl">Saldo do Mês</div><div class="mc-val" id="m-sal">R$ 0</div></div>
+    </div>
+
+    <div class="tab-panel active" id="tab-resumo">
+      <div class="g2">
+        <div class="sc"><div class="st" style="margin-bottom:11px">Gastos por categoria</div><div class="cc"><canvas id="catChart"></canvas></div><div class="legend" id="cat-leg"></div></div>
+        <div class="sc"><div class="st" style="margin-bottom:11px">Evolução (6 meses)</div><div class="cc"><canvas id="evolChart"></canvas></div></div>
+      </div>
+      <div class="sc"><div class="sh"><div class="st">Lançamentos recentes</div></div><div id="res-list"></div></div>
+    </div>
+
+    <div class="tab-panel" id="tab-despesas">
+      <div class="sc">
+        <div class="sh"><div class="st">Despesas do mês</div><button class="btn-add" onclick="abrirModal('despesa')">+ Adicionar</button></div>
+        <div class="search-bar">
+          <input class="search-input" id="desp-busca" placeholder="🔍 Buscar..." oninput="rDespesas()"/>
+          <select class="filter-sel" id="desp-cat-fil" onchange="rDespesas()"><option value="">Todas categorias</option></select>
+          <select class="filter-sel" id="desp-tipo-fil" onchange="rDespesas()"><option value="">Todos tipos</option><option value="fixa">Fixas</option><option value="variavel">Variáveis</option></select>
+        </div>
+        <div id="desp-list"></div>
+        <div id="desp-total" style="margin-top:10px;padding-top:10px;border-top:1px solid var(--border);text-align:right;font-size:13px;color:var(--text2)"></div>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="tab-receitas">
+      <div class="sc">
+        <div class="sh"><div class="st">Receitas do mês</div><button class="btn-add" onclick="abrirModal('receita')">+ Adicionar</button></div>
+        <div class="search-bar"><input class="search-input" id="rec-busca" placeholder="🔍 Buscar..." oninput="rReceitas()"/></div>
+        <div id="rec-list"></div>
+        <div id="rec-total" style="margin-top:10px;padding-top:10px;border-top:1px solid var(--border);text-align:right;font-size:13px;color:var(--text2)"></div>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="tab-metas">
+      <div class="sc"><div class="sh"><div class="st">Metas financeiras</div><button class="btn-add" onclick="abrirModal('meta')">+ Nova meta</button></div><div id="metas-list"></div></div>
+    </div>
+
+    <div class="tab-panel" id="tab-assinaturas">
+      <div class="sc">
+        <div class="sh"><div class="st">Assinaturas & recorrentes</div><button class="btn-add" onclick="abrirModal('assinatura')">+ Adicionar</button></div>
+        <div class="info-bar">💡 Assinaturas são <strong style="color:var(--teal)">lançadas automaticamente</strong> como despesas fixas todo mês ao abrir o app.</div>
+        <div id="assin-list"></div>
+      </div>
+      <div class="mc a" style="display:inline-block;min-width:210px"><div class="mc-lbl">Total mensal</div><div class="mc-val" id="assin-total">R$ 0</div></div>
+    </div>
+
+    <div class="tab-panel" id="tab-planejamento">
+      <div class="sc"><div class="sh"><div class="st">Real × Planejado</div><button class="btn-add" onclick="abrirPlan()">✏ Editar metas</button></div><div id="plan-list"></div></div>
+    </div>
+
+    <div class="tab-panel" id="tab-anual">
+      <div class="metrics" style="grid-template-columns:repeat(3,minmax(0,1fr))">
+        <div class="mc g"><div class="mc-lbl">Total entradas (ano)</div><div class="mc-val" id="ano-ent">R$ 0</div></div>
+        <div class="mc r"><div class="mc-lbl">Total saídas (ano)</div><div class="mc-val" id="ano-sai">R$ 0</div></div>
+        <div class="mc a"><div class="mc-lbl">Saldo acumulado</div><div class="mc-val" id="ano-sal">R$ 0</div></div>
+      </div>
+      <div class="sc"><div class="st" style="margin-bottom:12px">Saldo mensal ao longo do ano</div><div style="position:relative;height:220px"><canvas id="yearChart"></canvas></div></div>
+      <div class="sc"><div class="st" style="margin-bottom:12px">Resumo mês a mês</div><div id="ano-tabela"></div></div>
+    </div>
+  </main>
+</div>
+
+<!-- MODAL LANÇAMENTO -->
+<div class="mo" id="mo">
+  <div class="mb">
+    <div class="mt" id="mo-title">Lançamento</div>
+    <div class="fg"><label class="fl">Descrição</label><input class="fi" id="f-desc" placeholder="Ex: Supermercado, Salário..."/></div>
+    <div class="fg" id="g-val"><label class="fl">Valor (R$)</label><input class="fi" id="f-val" type="number" step="0.01" placeholder="0,00"/></div>
+    <div class="form-row">
+      <div class="fg" id="g-cat"><label class="fl">Categoria</label><select class="fi" id="f-cat"></select></div>
+      <div class="fg" id="g-tipo"><label class="fl">Tipo</label><select class="fi" id="f-tipo"><option value="fixa">Fixa</option><option value="variavel">Variável</option></select></div>
+    </div>
+    <div class="fg" id="g-data"><label class="fl">Data</label><input class="fi" id="f-data" type="date"/></div>
+    <div class="fg" id="g-obs"><label class="fl">Observação (opcional)</label><input class="fi" id="f-obs" placeholder="Detalhes adicionais..."/></div>
+    <div class="fg" id="g-alvo" style="display:none"><label class="fl">Valor alvo (R$)</label><input class="fi" id="f-alvo" type="number" step="0.01"/></div>
+    <div class="fg" id="g-atual" style="display:none"><label class="fl">Já guardado (R$)</label><input class="fi" id="f-atual" type="number" step="0.01"/></div>
+    <div class="ma"><button class="btn-cancel" onclick="fecharModal()">Cancelar</button><button class="btn-save" id="mo-save" onclick="salvarModal()">Salvar</button></div>
+  </div>
+</div>
+
+<!-- MODAL DEPÓSITO META -->
+<div class="mo" id="mo-dep">
+  <div class="mb" style="width:320px">
+    <div class="mt">💰 Adicionar à meta</div>
+    <div style="font-size:14px;color:var(--text2);margin-bottom:14px" id="dep-nome"></div>
+    <div class="fg"><label class="fl">Valor a depositar (R$)</label><input class="fi" id="dep-val" type="number" step="0.01" placeholder="0,00"/></div>
+    <div class="ma"><button class="btn-cancel" onclick="fecharDep()">Cancelar</button><button class="btn-save" onclick="salvarDep()">Depositar</button></div>
+  </div>
+</div>
+
+<!-- MODAL PLANEJAMENTO -->
+<div class="mo" id="mo-plan">
+  <div class="mb" style="width:420px">
+    <div class="mt">📋 Metas mensais por categoria (R$)</div>
+    <div id="plan-inputs"></div>
+    <div class="ma"><button class="btn-cancel" onclick="fecharPlan()">Cancelar</button><button class="btn-save" onclick="salvarPlan()">Salvar</button></div>
+  </div>
+</div>
+
+<!-- MODAL SENHA -->
+<div class="mo" id="mo-senha">
+  <div class="mb" style="width:340px">
+    <div class="mt" id="senha-titulo">🔑 Alterar senha</div>
+    <div class="fg" id="g-s-atual"><label class="fl">Senha atual</label><input class="fi" id="s-atual" type="password" placeholder="••••••••"/></div>
+    <div class="fg"><label class="fl">Nova senha (mín. 4 caracteres)</label><input class="fi" id="s-nova" type="password" placeholder="••••••••"/></div>
+    <div class="fg"><label class="fl">Confirmar nova senha</label><input class="fi" id="s-conf" type="password" placeholder="••••••••"/></div>
+    <div style="font-size:12px;color:var(--red);min-height:16px;margin-top:4px" id="s-err"></div>
+    <div class="ma"><button class="btn-cancel" onclick="fecharSenha()">Cancelar</button><button class="btn-save" onclick="salvarSenha()">Alterar</button></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+
+<script src="security.js"></script>
+<script src="db.js"></script>
+<script src="app.js"></script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('service-worker.js').catch(()=>{});
+  }
+</script>
+
+</body>
+</html>

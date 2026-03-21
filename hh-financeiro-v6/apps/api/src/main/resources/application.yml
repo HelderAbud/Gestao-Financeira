@@ -1,0 +1,43 @@
+spring:
+  application:
+    name: hh-finance-api
+  datasource:
+    url: jdbc:postgresql://localhost:5432/hh_finance
+    username: hh
+    password: hh_secret_change_me
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC
+  flyway:
+    enabled: true
+
+server:
+  port: 8080
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+
+hh:
+  jwt:
+    secret: ${HH_JWT_SECRET:dev-only-change-this-secret-min-32-chars-long!!}
+    expiration-ms: 86400000
+  cors:
+    allowed-origins: ${HH_CORS_ORIGINS:http://localhost:3000,http://127.0.0.1:3000}
+
+---
+spring:
+  config:
+    activate:
+      on-profile: docker
+  datasource:
+    url: jdbc:postgresql://db:5432/hh_finance
+    username: hh
+    password: hh_secret_change_me

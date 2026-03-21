@@ -1,0 +1,19 @@
+{
+  "name": "hh-financeiro-v6",
+  "private": true,
+  "workspaces": ["apps/web", "packages/types"],
+  "scripts": {
+    "dev:web": "npm run dev -w @hh/web",
+    "dev:api": "cd apps/api && mvn spring-boot:run",
+    "build": "npm run build -w @hh/types && npm run build -w @hh/web",
+    "generate:types": "npm run generate -w @hh/types",
+    "generate:types:snapshot": "npm run generate:from-snapshot -w @hh/types",
+    "lint:web": "npm run lint -w @hh/web",
+    "test": "npm run test:api && npm run test:web",
+    "test:api": "mvn -B -f apps/api test",
+    "test:web": "npm run test -w @hh/web"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

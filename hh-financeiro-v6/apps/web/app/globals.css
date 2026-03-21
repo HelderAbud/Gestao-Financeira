@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  @apply min-h-screen text-slate-100 antialiased;
+  background-color: #0a0d14;
+  background-image:
+    radial-gradient(ellipse 120% 80% at 50% -30%, rgba(212, 168, 67, 0.12), transparent 55%),
+    radial-gradient(ellipse 80% 50% at 100% 50%, rgba(56, 189, 248, 0.06), transparent 45%),
+    radial-gradient(ellipse 60% 40% at 0% 80%, rgba(148, 163, 184, 0.05), transparent 40%);
+}
+
+::selection {
+  @apply bg-hh-gold/30 text-white;
+}

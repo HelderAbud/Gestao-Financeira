@@ -1,0 +1,17 @@
+# Root
+node_modules/
+dist/
+.turbo/
+*.log
+.env
+.env.local
+.DS_Store
+
+# Java / Maven
+apps/api/target/
+apps/api/.idea/
+*.iml
+
+# Next.js
+apps/web/.next/
+apps/web/out/

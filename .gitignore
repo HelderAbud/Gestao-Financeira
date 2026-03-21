@@ -1,0 +1,46 @@
+# Dependências e builds (monorepo e futuros)
+node_modules/
+**/node_modules/
+
+# Next.js
+**/.next/
+**/out/
+
+# Java / Maven
+**/target/
+*.class
+*.jar
+*.war
+*.ear
+hs_err_pid*
+
+# Logs e ambiente
+*.log
+.env
+.env.*
+!.env.example
+
+# Ferramentas
+.turbo/
+dist/
+*.tsbuildinfo
+
+# IDE / OS
+.idea/
+*.iml
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Testes / cobertura
+coverage/
+.nyc_output/
+
+# Arquivos binários grandes (não versionar)
+*.zip
+*.rar
+*.7z
+
+# Misc
+*.swp
+*~

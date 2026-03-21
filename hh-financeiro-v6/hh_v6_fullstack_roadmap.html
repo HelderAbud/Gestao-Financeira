@@ -1,0 +1,418 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-sans)}
+.sec{margin-bottom:32px}
+.sec-title{font-size:11px;font-weight:500;color:var(--color-text-tertiary);text-transform:uppercase;letter-spacing:.07em;padding-bottom:8px;border-bottom:.5px solid var(--color-border-tertiary);margin-bottom:16px}
+.card{background:var(--color-background-secondary);border-radius:var(--border-radius-lg);padding:14px 16px;margin-bottom:8px}
+.card-b{background:var(--color-background-primary);border:.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:14px 16px;margin-bottom:8px}
+.label{font-size:14px;font-weight:500;color:var(--color-text-primary);line-height:1.4}
+.desc{font-size:13px;color:var(--color-text-secondary);margin-top:4px;line-height:1.6}
+.mono{font-family:var(--font-mono);font-size:12px;background:var(--color-background-tertiary);padding:2px 6px;border-radius:4px}
+.badge{display:inline-block;font-size:11px;font-weight:500;padding:2px 9px;border-radius:20px;margin-left:6px;vertical-align:middle}
+.b-ok{background:var(--color-background-success);color:var(--color-text-success)}
+.b-warn{background:var(--color-background-warning);color:var(--color-text-warning)}
+.b-info{background:var(--color-background-info);color:var(--color-text-info)}
+.b-new{background:var(--color-background-secondary);color:var(--color-text-secondary);border:.5px solid var(--color-border-secondary)}
+.tag{display:inline-block;font-size:11px;padding:2px 7px;border-radius:6px;background:var(--color-background-secondary);color:var(--color-text-secondary);border:.5px solid var(--color-border-secondary);margin:2px 2px 2px 0}
+.g2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.g3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.step-card{border:.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:14px 16px;position:relative}
+.step-num{font-size:28px;font-weight:500;color:var(--color-border-secondary);line-height:1;margin-bottom:8px}
+.step-title{font-size:15px;font-weight:500;margin-bottom:6px}
+.effort-bar{height:4px;border-radius:2px;background:var(--color-border-tertiary);overflow:hidden;margin-top:10px}
+.effort-fill{height:100%;border-radius:2px}
+.row{display:flex;align-items:flex-start;gap:12px}
+.phase{border-left:2px solid;padding:12px 14px;border-radius:0 var(--border-radius-md) var(--border-radius-md) 0;margin-bottom:8px;background:var(--color-background-secondary)}
+.ph-1{border-color:var(--color-text-info)}
+.ph-2{border-color:var(--color-text-success)}
+.ph-3{border-color:var(--color-text-warning)}
+.ph-4{border-color:var(--color-text-danger)}
+.ph-lbl{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
+.pl-1{color:var(--color-text-info)}
+.pl-2{color:var(--color-text-success)}
+.pl-3{color:var(--color-text-warning)}
+.pl-4{color:var(--color-text-danger)}
+.tech-box{border:.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:12px;text-align:center}
+.tech-icon{font-size:24px;margin-bottom:6px}
+.tech-name{font-size:13px;font-weight:500;margin-bottom:3px}
+.tech-role{font-size:11px;color:var(--color-text-tertiary)}
+.arch-layer{border:.5px solid var(--color-border-secondary);border-radius:var(--border-radius-md);padding:10px 14px;margin-bottom:6px;display:flex;align-items:center;justify-content:space-between}
+.arch-name{font-size:13px;font-weight:500}
+.arch-tags{display:flex;gap:6px;flex-wrap:wrap}
+.decision-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px}
+.dec-opt{border:.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:11px 13px}
+.dec-opt.rec{border-color:var(--color-text-success);border-width:1.5px}
+.dec-label{font-size:12px;font-weight:500;margin-bottom:4px}
+.dec-desc{font-size:12px;color:var(--color-text-secondary);line-height:1.4}
+</style>
+
+<div style="padding:1rem 0">
+
+  <!-- VISÃO GERAL -->
+  <div class="sec">
+    <div class="sec-title">Visão geral — de arquivo HTML a produto full-stack</div>
+    <div class="card-b">
+      <div style="font-size:16px;font-weight:500;margin-bottom:8px">H & H Gestão Financeira — Evolução v5 → v6 Full-Stack</div>
+      <div class="desc">O projeto vai de um arquivo HTML local para uma aplicação web completa com backend, banco de dados em nuvem, autenticação segura, sincronização entre dispositivos e deploy público. A v5 já tem segurança sólida — agora é hora de escalar a arquitetura.</div>
+    </div>
+    <div class="g3" style="margin-top:10px">
+      <div class="card" style="text-align:center">
+        <div style="font-size:22px;margin-bottom:6px">📁</div>
+        <div style="font-size:13px;font-weight:500">Hoje (v5)</div>
+        <div style="font-size:12px;color:var(--color-text-tertiary);margin-top:4px">HTML local · IndexedDB · PWA · 1 usuário</div>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:center;font-size:24px;color:var(--color-text-tertiary)">→</div>
+      <div class="card" style="text-align:center;border:.5px solid var(--color-border-success)">
+        <div style="font-size:22px;margin-bottom:6px">🌐</div>
+        <div style="font-size:13px;font-weight:500">v6 Full-Stack</div>
+        <div style="font-size:12px;color:var(--color-text-tertiary);margin-top:4px">React · Spring Boot · PostgreSQL · Multi-device</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ARQUITETURA COMPLETA -->
+  <div class="sec">
+    <div class="sec-title">Arquitetura das camadas — stack completa</div>
+
+    <div class="arch-layer" style="border-color:var(--color-text-info)">
+      <div>
+        <div class="arch-name">Camada de apresentação (Frontend)</div>
+        <div style="font-size:12px;color:var(--color-text-secondary);margin-top:2px">Interface do usuário, roteamento, estado global, chamadas de API</div>
+      </div>
+      <div class="arch-tags">
+        <span class="tag">React 18</span><span class="tag">Next.js 14</span><span class="tag">Tailwind CSS</span><span class="tag">React Query</span><span class="tag">Recharts</span>
+      </div>
+    </div>
+
+    <div class="arch-layer" style="border-color:var(--color-text-success)">
+      <div>
+        <div class="arch-name">Camada de API (Backend)</div>
+        <div style="font-size:12px;color:var(--color-text-secondary);margin-top:2px">REST API, autenticação JWT, regras de negócio, validação</div>
+      </div>
+      <div class="arch-tags">
+        <span class="tag">Spring Boot 3</span><span class="tag">Spring Security</span><span class="tag">JWT</span><span class="tag">JPA/Hibernate</span>
+      </div>
+    </div>
+
+    <div class="arch-layer" style="border-color:var(--color-text-warning)">
+      <div>
+        <div class="arch-name">Camada de dados (Banco)</div>
+        <div style="font-size:12px;color:var(--color-text-secondary);margin-top:2px">Persistência, relacionamentos, migração de schema</div>
+      </div>
+      <div class="arch-tags">
+        <span class="tag">PostgreSQL 16</span><span class="tag">Flyway</span><span class="tag">Connection Pool</span>
+      </div>
+    </div>
+
+    <div class="arch-layer" style="border-color:var(--color-text-danger)">
+      <div>
+        <div class="arch-name">Camada de infraestrutura (Deploy)</div>
+        <div style="font-size:12px;color:var(--color-text-secondary);margin-top:2px">Hosting, CI/CD, variáveis de ambiente, domínio</div>
+      </div>
+      <div class="arch-tags">
+        <span class="tag">Vercel (frontend)</span><span class="tag">Render (backend)</span><span class="tag">Supabase (DB)</span><span class="tag">GitHub Actions</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5 PILARES DETALHADOS -->
+  <div class="sec">
+    <div class="sec-title">Os 5 pilares — planejamento detalhado</div>
+
+    <!-- PILAR 1: BACKEND -->
+    <div class="phase ph-1">
+      <div class="ph-lbl pl-1">Pilar 1 — Backend Spring Boot</div>
+      <div class="label">API REST + Autenticação JWT + PostgreSQL</div>
+      <div class="desc" style="margin-top:6px">O backend expõe endpoints REST para todas as entidades financeiras. A autenticação usa JWT com refresh token. Cada usuário tem seus próprios dados isolados no banco.</div>
+    </div>
+    <div class="g2" style="margin-bottom:16px">
+      <div class="card">
+        <div style="font-size:12px;font-weight:500;color:var(--color-text-secondary);margin-bottom:8px">Endpoints principais</div>
+        <div class="desc" style="font-size:12px;line-height:1.8">
+          <span class="mono">POST /auth/register</span><br>
+          <span class="mono">POST /auth/login</span><br>
+          <span class="mono">POST /auth/refresh</span><br>
+          <span class="mono">GET/POST /despesas</span><br>
+          <span class="mono">GET/POST /receitas</span><br>
+          <span class="mono">GET/POST /metas</span><br>
+          <span class="mono">GET /resumo/{mes}/{ano}</span>
+        </div>
+      </div>
+      <div class="card">
+        <div style="font-size:12px;font-weight:500;color:var(--color-text-secondary);margin-bottom:8px">Estrutura de pacotes</div>
+        <div class="desc" style="font-size:12px;line-height:1.8">
+          <span class="mono">controller/</span> — endpoints REST<br>
+          <span class="mono">service/</span> — regras de negócio<br>
+          <span class="mono">repository/</span> — JPA interfaces<br>
+          <span class="mono">entity/</span> — modelos JPA<br>
+          <span class="mono">dto/</span> — request/response<br>
+          <span class="mono">security/</span> — JWT + filters<br>
+          <span class="mono">config/</span> — CORS, beans
+        </div>
+      </div>
+    </div>
+
+    <!-- PILAR 2: REACT -->
+    <div class="phase ph-2">
+      <div class="ph-lbl pl-2">Pilar 2 — Frontend React + Next.js</div>
+      <div class="label">Interface moderna com React 18 + App Router + Tailwind</div>
+      <div class="desc" style="margin-top:6px">O frontend consome a API REST via React Query para cache e sincronização automática. Next.js App Router para SSR/SSG onde necessário. Design fiel à identidade visual dourada já existente.</div>
+    </div>
+    <div class="g2" style="margin-bottom:16px">
+      <div class="card">
+        <div style="font-size:12px;font-weight:500;color:var(--color-text-secondary);margin-bottom:8px">Estrutura de páginas</div>
+        <div class="desc" style="font-size:12px;line-height:1.8">
+          <span class="mono">/login</span> — autenticação<br>
+          <span class="mono">/dashboard</span> — resumo do mês<br>
+          <span class="mono">/despesas</span> — lista + CRUD<br>
+          <span class="mono">/receitas</span> — lista + CRUD<br>
+          <span class="mono">/metas</span> — progresso<br>
+          <span class="mono">/anual</span> — visão do ano<br>
+          <span class="mono">/configuracoes</span> — perfil
+        </div>
+      </div>
+      <div class="card">
+        <div style="font-size:12px;font-weight:500;color:var(--color-text-secondary);margin-bottom:8px">Libs e ferramentas</div>
+        <div class="desc" style="font-size:12px;line-height:1.8">
+          <span class="tag">@tanstack/react-query</span><br>
+          <span class="tag">axios</span><br>
+          <span class="tag">recharts</span><br>
+          <span class="tag">react-hook-form</span><br>
+          <span class="tag">zod</span><br>
+          <span class="tag">date-fns</span><br>
+          <span class="tag">lucide-react</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PILAR 3: SYNC -->
+    <div class="phase ph-3">
+      <div class="ph-lbl pl-3">Pilar 3 — Sincronização na nuvem</div>
+      <div class="label">Dados acessíveis em qualquer dispositivo, em tempo real</div>
+      <div class="desc" style="margin-top:6px">Com backend próprio, a sincronização acontece naturalmente a cada request. Para atualizações em tempo real (ex: dois dispositivos abertos), optamos por polling ou WebSocket conforme a necessidade.</div>
+    </div>
+
+    <div style="margin-bottom:8px;font-size:12px;color:var(--color-text-secondary)">Escolha da estratégia de sincronização:</div>
+    <div class="decision-row">
+      <div class="dec-opt rec">
+        <div class="dec-label" style="color:var(--color-text-success)">✅ Recomendado — API própria (Spring Boot)</div>
+        <div class="dec-desc">Controle total dos dados. Sem lock-in de vendor. Escalável. Dados criptografados em trânsito (HTTPS) e em repouso. Funciona com qualquer banco. Custo previsível.</div>
+      </div>
+      <div class="dec-opt">
+        <div class="dec-label">Firebase Realtime DB</div>
+        <div class="dec-desc">Mais rápido para implementar. Mas: lock-in Google, preço pode escalar mal, menos controle de segurança, dados em servidor de terceiro.</div>
+      </div>
+    </div>
+    <div style="margin-bottom:16px"></div>
+
+    <!-- PILAR 4: DEPLOY -->
+    <div class="phase ph-4">
+      <div class="ph-lbl pl-4">Pilar 4 — Deploy público</div>
+      <div class="label">Frontend na Vercel · Backend no Render · Banco no Supabase</div>
+      <div class="desc" style="margin-top:6px">Stack de deploy 100% gratuita para começar. Vercel para o Next.js (deploy automático a cada push). Render para o Spring Boot (free tier com sleep após inatividade). Supabase para PostgreSQL gerenciado.</div>
+    </div>
+    <div class="g3" style="margin-bottom:16px">
+      <div class="tech-box">
+        <div class="tech-icon">▲</div>
+        <div class="tech-name">Vercel</div>
+        <div class="tech-role">Next.js frontend</div>
+        <div style="margin-top:8px"><span class="badge b-ok">Grátis</span></div>
+        <div style="font-size:11px;color:var(--color-text-tertiary);margin-top:6px">Deploy automático · Edge CDN global · HTTPS incluído</div>
+      </div>
+      <div class="tech-box">
+        <div class="tech-icon">⬡</div>
+        <div class="tech-name">Render</div>
+        <div class="tech-role">Spring Boot API</div>
+        <div style="margin-top:8px"><span class="badge b-ok">Grátis</span></div>
+        <div style="font-size:11px;color:var(--color-text-tertiary);margin-top:6px">Free tier · Sleep após 15min · $7/mês para always-on</div>
+      </div>
+      <div class="tech-box">
+        <div class="tech-icon">⚡</div>
+        <div class="tech-name">Supabase</div>
+        <div class="tech-role">PostgreSQL gerenciado</div>
+        <div style="margin-top:8px"><span class="badge b-ok">Grátis</span></div>
+        <div style="font-size:11px;color:var(--color-text-tertiary);margin-top:6px">500 MB · Backups automáticos · Console web</div>
+      </div>
+    </div>
+
+    <!-- PILAR 5: README -->
+    <div class="phase ph-1">
+      <div class="ph-lbl pl-1">Pilar 5 — README profissional</div>
+      <div class="label">Documentação completa com arquitetura, screenshots e diagramas</div>
+      <div class="desc" style="margin-top:6px">Um README bem feito é o cartão de visitas do projeto. Para um portfolio pessoal, é tão importante quanto o código em si.</div>
+    </div>
+    <div class="card" style="margin-bottom:16px">
+      <div style="font-size:12px;font-weight:500;color:var(--color-text-secondary);margin-bottom:8px">Seções do README</div>
+      <div class="g2">
+        <div style="font-size:13px;line-height:2;color:var(--color-text-primary)">
+          📌 Badges (versão, licença, deploy)<br>
+          📖 Descrição e motivação<br>
+          ✨ Funcionalidades com GIFs<br>
+          🏗 Diagrama de arquitetura<br>
+          🛠 Stack e tecnologias
+        </div>
+        <div style="font-size:13px;line-height:2;color:var(--color-text-primary)">
+          🚀 Como rodar localmente<br>
+          🔐 Variáveis de ambiente<br>
+          📊 Schema do banco<br>
+          🌐 URLs de produção<br>
+          📄 Licença e contribuição
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCHEMA DO BANCO -->
+  <div class="sec">
+    <div class="sec-title">Schema PostgreSQL — tabelas principais</div>
+    <div class="g2">
+      <div class="card">
+        <div style="font-size:12px;font-weight:500;margin-bottom:8px">Tabelas de usuário e autenticação</div>
+        <div class="desc" style="font-size:12px;line-height:1.9;font-family:var(--font-mono)">
+          users (id, email, senha_hash, nome, criado_em)<br>
+          refresh_tokens (id, user_id, token, expira_em)
+        </div>
+      </div>
+      <div class="card">
+        <div style="font-size:12px;font-weight:500;margin-bottom:8px">Tabelas financeiras</div>
+        <div class="desc" style="font-size:12px;line-height:1.9;font-family:var(--font-mono)">
+          despesas (id, user_id, desc, valor, cat, tipo, data)<br>
+          receitas (id, user_id, desc, valor, cat, data)<br>
+          metas (id, user_id, desc, alvo, atual)<br>
+          assinaturas (id, user_id, desc, valor, cat)<br>
+          depositos_meta (id, meta_id, valor, data)
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FASES DO PROJETO -->
+  <div class="sec">
+    <div class="sec-title">Cronograma de implementação — 4 fases</div>
+
+    <div class="g2">
+      <div class="step-card">
+        <div class="step-num">01</div>
+        <div class="step-title">Backend Spring Boot</div>
+        <div class="desc">Setup do projeto · Entidades JPA · Repositórios · Auth JWT · Endpoints REST · Testes unitários · Docker Compose local</div>
+        <div class="effort-bar" style="margin-top:12px"><div class="effort-fill" style="width:100%;background:var(--color-text-info)"></div></div>
+        <div style="font-size:11px;color:var(--color-text-tertiary);margin-top:4px">Esforço alto · 2–3 semanas</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">02</div>
+        <div class="step-title">Frontend React + Next.js</div>
+        <div class="desc">Projeto Next.js · Tailwind · Telas de auth · Dashboard · CRUD de lançamentos · Gráficos com Recharts · Design system dourado</div>
+        <div class="effort-bar" style="margin-top:12px"><div class="effort-fill" style="width:100%;background:var(--color-text-success)"></div></div>
+        <div style="font-size:11px;color:var(--color-text-tertiary);margin-top:4px">Esforço alto · 2–3 semanas</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">03</div>
+        <div class="step-title">Integração e Deploy</div>
+        <div class="desc">Conectar frontend ao backend · CORS · Variáveis de ambiente · Deploy Vercel + Render + Supabase · CI/CD com GitHub Actions</div>
+        <div class="effort-bar" style="margin-top:12px"><div class="effort-fill" style="width:60%;background:var(--color-text-warning)"></div></div>
+        <div style="font-size:11px;color:var(--color-text-tertiary);margin-top:4px">Esforço médio · 1 semana</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">04</div>
+        <div class="step-title">README + Polimento</div>
+        <div class="desc">README profissional · Screenshots · Diagrama de arquitetura · Migração de dados v5 · Testes E2E · Revisão de segurança</div>
+        <div class="effort-bar" style="margin-top:12px"><div class="effort-fill" style="width:40%;background:var(--color-text-danger)"></div></div>
+        <div style="font-size:11px;color:var(--color-text-tertiary);margin-top:4px">Esforço baixo · 3–5 dias</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DECISÕES TÉCNICAS IMPORTANTES -->
+  <div class="sec">
+    <div class="sec-title">Decisões técnicas importantes — por que essa stack</div>
+
+    <div class="card row" style="margin-bottom:8px">
+      <div style="font-size:18px;flex-shrink:0">☕</div>
+      <div>
+        <div class="label">Por que Spring Boot e não Node.js?</div>
+        <div class="desc">Spring Boot tem Spring Security maduro com suporte nativo a JWT, JPA para ORM robusto e tipagem forte com Java/Kotlin. Para dados financeiros, a segurança built-in e o ecossistema corporativo são vantagens reais. Se preferir Node, NestJS seria o equivalente mais próximo.</div>
+      </div>
+    </div>
+
+    <div class="card row" style="margin-bottom:8px">
+      <div style="font-size:18px;flex-shrink:0">⚛️</div>
+      <div>
+        <div class="label">Por que Next.js e não Vite + React puro?</div>
+        <div class="desc">Next.js App Router oferece SSR para a tela de login (melhor SEO e segurança), deploy trivial na Vercel, e file-based routing que estrutura o projeto naturalmente. Para um app com autenticação, o middleware de rota do Next.js é perfeito para proteger páginas.</div>
+      </div>
+    </div>
+
+    <div class="card row" style="margin-bottom:8px">
+      <div style="font-size:18px;flex-shrink:0">🐘</div>
+      <div>
+        <div class="label">Por que PostgreSQL e não MySQL ou MongoDB?</div>
+        <div class="desc">PostgreSQL tem suporte nativo a JSON (útil para campos flexíveis), transações ACID robustas, suporte a JSONB para dados semiestruturados, e é o banco padrão do Supabase. Para dados financeiros relacionais, SQL é a escolha correta — MongoDB seria superdimensionado e arriscado.</div>
+      </div>
+    </div>
+
+    <div class="card row">
+      <div style="font-size:18px;flex-shrink:0">🔐</div>
+      <div>
+        <div class="label">Segurança na migração da v5 para v6</div>
+        <div class="desc">A senha do usuário nunca viaja para o backend em texto puro. O cliente faz hash local (SHA-256) antes de enviar. O backend aplica bcrypt ao hash recebido antes de armazenar. Dados da v5 podem ser migrados via importação de backup .hhbak pelo próprio usuário após criar conta.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- POR ONDE COMEÇAR -->
+  <div class="sec">
+    <div class="sec-title">Por onde começar — próximos passos concretos</div>
+    <div class="card-b">
+      <div style="font-size:14px;font-weight:500;margin-bottom:12px">Sequência recomendada de execução</div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="display:flex;align-items:center;gap:10px;font-size:13px">
+          <span style="width:22px;height:22px;border-radius:50%;background:var(--color-background-info);color:var(--color-text-info);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex-shrink:0">1</span>
+          <span>Criar repositório no GitHub com estrutura <span class="mono">frontend/</span> e <span class="mono">backend/</span></span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:13px">
+          <span style="width:22px;height:22px;border-radius:50%;background:var(--color-background-info);color:var(--color-text-info);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex-shrink:0">2</span>
+          <span>Inicializar Spring Boot via <span class="mono">start.spring.io</span> com dependências: Web, Security, JPA, PostgreSQL, JWT</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:13px">
+          <span style="width:22px;height:22px;border-radius:50%;background:var(--color-background-info);color:var(--color-text-info);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex-shrink:0">3</span>
+          <span>Criar conta no Supabase e configurar banco PostgreSQL + copiar connection string</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:13px">
+          <span style="width:22px;height:22px;border-radius:50%;background:var(--color-background-info);color:var(--color-text-info);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex-shrink:0">4</span>
+          <span>Implementar entidades + auth JWT + endpoint <span class="mono">POST /auth/login</span> funcionando localmente</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:13px">
+          <span style="width:22px;height:22px;border-radius:50%;background:var(--color-background-success);color:var(--color-text-success);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex-shrink:0">5</span>
+          <span>Inicializar Next.js com <span class="mono">npx create-next-app@latest</span> + Tailwind + estrutura de pastas</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:13px">
+          <span style="width:22px;height:22px;border-radius:50%;background:var(--color-background-success);color:var(--color-text-success);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex-shrink:0">6</span>
+          <span>Criar tela de login consumindo a API · configurar React Query · proteger rotas com middleware Next.js</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:13px">
+          <span style="width:22px;height:22px;border-radius:50%;background:var(--color-background-warning);color:var(--color-text-warning);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex-shrink:0">7</span>
+          <span>Deploy: push para GitHub → conectar Vercel ao repo → conectar Render ao repo backend → testar em produção</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:13px">
+          <span style="width:22px;height:22px;border-radius:50%;background:var(--color-background-warning);color:var(--color-text-warning);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex-shrink:0">8</span>
+          <span>Escrever README com badges, screenshots, diagrama de arquitetura e instruções de setup</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MENSAGEM FINAL -->
+  <div class="card-b">
+    <div style="font-size:14px;font-weight:500;margin-bottom:8px">O que isso representa para o projeto</div>
+    <div style="font-size:13px;color:var(--color-text-secondary);line-height:1.7">
+      A v5 já é um app com segurança de nível bancário em 88 KB. A v6 full-stack vai transformá-lo em um produto real, acessível de qualquer dispositivo, com dados sincronizados na nuvem e uma página pública profissional. É um portfolio completo — demonstra domínio de toda a stack moderna: segurança criptográfica, API REST, autenticação JWT, React moderno e infraestrutura de produção. Qual das 5 sugestões você quer começar primeiro?
+    </div>
+    <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
+      <button style="background:none;border:.5px solid var(--color-border-secondary);padding:7px 13px;border-radius:var(--border-radius-md);font-size:13px;cursor:pointer;color:var(--color-text-secondary)" onclick="sendPrompt('Criar o backend Spring Boot com JWT e PostgreSQL para o H&H Gestão Financeira v6')">Começar backend ↗</button>
+      <button style="background:none;border:.5px solid var(--color-border-secondary);padding:7px 13px;border-radius:var(--border-radius-md);font-size:13px;cursor:pointer;color:var(--color-text-secondary)" onclick="sendPrompt('Criar o frontend React com Next.js e Tailwind para o H&H Gestão Financeira v6')">Começar frontend ↗</button>
+      <button style="background:none;border:.5px solid var(--color-border-secondary);padding:7px 13px;border-radius:var(--border-radius-md);font-size:13px;cursor:pointer;color:var(--color-text-secondary)" onclick="sendPrompt('Criar o README profissional completo do H&H Gestão Financeira com arquitetura e diagramas')">Começar README ↗</button>
+    </div>
+  </div>
+
+</div>
