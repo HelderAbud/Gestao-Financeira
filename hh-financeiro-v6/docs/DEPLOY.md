@@ -38,7 +38,7 @@ O repositório já tem `apps/api/Dockerfile`.
 | `HH_JWT_SECRET` | string aleatória ≥ 32 caracteres |
 | `HH_CORS_ORIGINS` | `https://seu-app.vercel.app` (sem barra final; pode listar vários separados por vírgula) |
 
-4. **Health check path** (opcional): `/actuator/health` só se activar actuator; caso contrário use o path raiz ou deixe em branco conforme o Render permita.
+4. **Health check path** no Render: **`/actuator/health`** (a API expõe Spring Actuator só para `health`; útil para o painel ficar verde). O [`render.yaml`](../render.yaml) já inclui `healthCheckPath: /actuator/health`.
 
 5. Após o deploy, teste: `https://SUA-API.onrender.com/swagger-ui.html`
 
@@ -97,6 +97,7 @@ HH_CORS_ORIGINS=http://localhost:3000,http://127.0.0.1:3000
 
 ## Checklist final
 
+- [ ] `GET /actuator/health` devolve `200` e `"status":"UP"` (sem autenticação).
 - [ ] API responde e Swagger abre.
 - [ ] Login no site público cria sessão (token) e o dashboard carrega.
 - [ ] CORS sem erros na consola do browser.

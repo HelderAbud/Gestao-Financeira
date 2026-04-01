@@ -51,12 +51,13 @@ flowchart TB
 - **`service`**: regras de negócio e transações (`@Transactional`).
 - **`repository`**: Spring Data JPA; consultas por `user_id` para isolamento entre utilizadores.
 - **`security`**: `JwtAuthFilter` extrai o token, define `Authentication` com principal = `userId` (`Long`).
+- **`exception`**: `GlobalExceptionHandler` devolve JSON uniforme (`ApiErrorResponse`: `error`, `message`, `path`, `timestamp`) para `ResponseStatusException`, validação Bean Validation (`400`), corpo JSON ilegível e falhas não tratadas (`500`).
 
 ## Frontend (`apps/web`)
 
 - **Rotas públicas**: `/`, `/login`.
 - **Área autenticada** (`/dashboard/*`): layout verifica token em `localStorage`, navegação por links, dados via `fetch` + TanStack Query.
-- **Cliente HTTP** (`lib/api.ts`): prefixo `NEXT_PUBLIC_API_URL`, header `Authorization: Bearer`.
+- **Cliente HTTP** (`lib/api.ts`): prefixo `NEXT_PUBLIC_API_URL`, header `Authorization: Bearer`, erros com classe `ApiError` (lê `message` / `error` do JSON da API).
 
 ## Onde está o “contrato” da API
 

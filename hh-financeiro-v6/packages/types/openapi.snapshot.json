@@ -78,6 +78,24 @@
         }
       }
     },
+    "/api/v1/insights/monthly-analysis": {
+      "get": {
+        "operationId": "monthlyInsightAnalysis",
+        "parameters": [
+          { "name": "year", "in": "query", "required": true, "schema": { "type": "integer" } },
+          { "name": "month", "in": "query", "required": true, "schema": { "type": "integer" } }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/MonthlyInsightResponse" }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/expenses": {
       "get": {
         "operationId": "listExpenses",
@@ -476,6 +494,13 @@
           "totalExpenseOutflows": { "type": "number" },
           "totalInvestments": { "type": "number" },
           "balance": { "type": "number" }
+        }
+      },
+      "MonthlyInsightResponse": {
+        "type": "object",
+        "properties": {
+          "text": { "type": "string" },
+          "mode": { "type": "string", "enum": ["OPENAI", "RULE_BASED"] }
         }
       },
       "ExpenseCreateRequest": {

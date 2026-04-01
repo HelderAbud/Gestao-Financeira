@@ -5,6 +5,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { Modal } from "@/components/Modal";
 import { PeriodFilter } from "@/components/PeriodFilter";
+import { usePeriod } from "@/hooks/usePeriod";
 import { INCOME_CATEGORIES } from "@/lib/categories";
 import { formatBrl } from "@/lib/format";
 import { apiFetch, getToken } from "@/lib/api";
@@ -18,9 +19,7 @@ function todayISODate() {
 
 export default function IncomesPage() {
   const qc = useQueryClient();
-  const now = new Date();
-  const [year, setYear] = useState(now.getFullYear());
-  const [month, setMonth] = useState(now.getMonth() + 1);
+  const { year, month, setYear, setMonth } = usePeriod();
   const [modal, setModal] = useState<IncomeRow | "new" | null>(null);
 
   const [description, setDescription] = useState("");

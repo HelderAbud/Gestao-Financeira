@@ -45,6 +45,11 @@ class FinanceApiIntegrationTest {
     }
 
     @Test
+    void actuatorHealth_isOkWithoutAuth() throws Exception {
+        mockMvc.perform(get("/actuator/health")).andExpect(status().isOk());
+    }
+
+    @Test
     void unauthenticated_usersMe_returns401() throws Exception {
         mockMvc.perform(get("/api/v1/users/me")).andExpect(status().isUnauthorized());
     }
@@ -142,6 +147,47 @@ class FinanceApiIntegrationTest {
         assertThat(s.get("totalExpenseOutflows").decimalValue()).isEqualByComparingTo("200.00");
         assertThat(s.get("totalInvestments").decimalValue()).isEqualByComparingTo("100.00");
         assertThat(s.get("balance").decimalValue()).isEqualByComparingTo("700.00");
+    }
+
+    @Test
+    void register_duplicateEmail_returns409WithStandardBody() throws Exception {
+        String email = "dup-" + UUID.randomUUID() + "@test.com";
+        String body =
+                """
+                {"email":"%s","password":"password123"}
+                """
+                        .formatted(email);
+        mockMvc.perform(
+                        post("/api/v1/auth/register")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(body))
+                .andExpect(status().isOk());
+
+        mockMvc.perform(
+                        post("/api/v1/auth/register")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(body))
+                .andExpect(status().isConflict())
+                .andExpect(jsonPath("$.error").value("CONFLICT"))
+                .andExpect(jsonPath("$.message").value("Email já cadastrado"))
+                .andExpect(jsonPath("$.path").value("/api/v1/auth/register"))
+                .andExpect(jsonPath("$.timestamp").exists());
+    }
+
+    @Test
+    void monthlyInsight_withoutOpenAi_returnsRuleBasedText() throws Exception {
+        String email = "u-" + UUID.randomUUID() + "@test.com";
+        String token = register(email);
+
+        mockMvc.perform(
+                        get("/api/v1/insights/monthly-analysis")
+                                .header("Authorization", "Bearer " + token)
+                                .param("year", "2025")
+                                .param("month", "3"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.mode").value("RULE_BASED"))
+                .andExpect(jsonPath("$.text").isString())
+                .andExpect(jsonPath("$.text").isNotEmpty());
     }
 
     @Test

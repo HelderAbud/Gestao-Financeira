@@ -32,6 +32,8 @@ public class SecurityConfig {
                         auth ->
                                 auth.requestMatchers(HttpMethod.POST, "/api/v1/auth/**")
                                         .permitAll()
+                                        .requestMatchers(HttpMethod.GET, "/actuator/health")
+                                        .permitAll()
                                         .requestMatchers(
                                                 "/v3/api-docs/**",
                                                 "/swagger-ui/**",

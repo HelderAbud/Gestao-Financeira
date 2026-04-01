@@ -9,6 +9,7 @@ services:
     dockerfilePath: ./apps/api/Dockerfile
     dockerContext: ./apps/api
     plan: free
+    healthCheckPath: /actuator/health
     envVars:
       - key: SPRING_DATASOURCE_URL
         sync: false
@@ -19,4 +20,8 @@ services:
       - key: HH_JWT_SECRET
         generateValue: true
       - key: HH_CORS_ORIGINS
+        sync: false
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: HH_OPENAI_MODEL
         sync: false

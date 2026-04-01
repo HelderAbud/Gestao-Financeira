@@ -3,6 +3,7 @@
 | Documento | Descrição |
 |-----------|-----------|
 | [DEPLOY.md](./DEPLOY.md) | **Deploy** (Vercel, Render, Neon, variáveis) |
+| [PASSO_A_PASSO_JUNIOR.md](./PASSO_A_PASSO_JUNIOR.md) | Checklist **fora do código** (URLs, GitHub, LinkedIn) |
 | [ARCHITECTURE.md](./ARCHITECTURE.md) | Stack, diagramas (Mermaid), camadas da API |
 | [FLOWS.md](./FLOWS.md) | Fluxos de autenticação e pedidos |
 | [TESTING.md](./TESTING.md) | Testes automatizados e estrutura `src/test/java` |

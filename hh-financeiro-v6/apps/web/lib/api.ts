@@ -11,6 +11,18 @@ export function setToken(token: string | null) {
   else localStorage.removeItem("hh_access_token");
 }
 
+/** Erro HTTP da API com corpo JSON padronizado (`ApiErrorResponse`). */
+export class ApiError extends Error {
+  constructor(
+    message: string,
+    public readonly status: number,
+    public readonly code?: string
+  ) {
+    super(message);
+    this.name = "ApiError";
+  }
+}
+
 export async function apiFetch<T>(
   path: string,
   init?: RequestInit & { json?: unknown }
@@ -32,7 +44,19 @@ export async function apiFetch<T>(
 
   if (!res.ok) {
     const text = await res.text();
-    throw new Error(text || res.statusText);
+    let message = text || res.statusText;
+    let code: string | undefined;
+    try {
+      const j = JSON.parse(text) as {
+        message?: string;
+        error?: string;
+      };
+      if (typeof j.message === "string") message = j.message;
+      if (typeof j.error === "string") code = j.error;
+    } catch {
+      /* corpo não JSON */
+    }
+    throw new ApiError(message, res.status, code);
   }
 
   if (res.status === 204) return undefined as T;
