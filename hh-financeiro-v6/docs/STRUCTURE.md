@@ -90,7 +90,7 @@ hh-financeiro-v6/
 mvn -f apps/api test
 
 # Tipos + build web (raiz)
-npm run generate:types:snapshot && npm run build -w @hh/web
+npm run verify:types && npm run build -w @hh/web
 
 # Stack completa
 docker compose up --build

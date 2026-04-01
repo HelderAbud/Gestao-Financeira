@@ -8,6 +8,7 @@
     "build": "npm run build -w @hh/types && npm run build -w @hh/web",
     "generate:types": "npm run generate -w @hh/types",
     "generate:types:snapshot": "npm run generate:from-snapshot -w @hh/types",
+    "verify:types": "npm run generate:types:snapshot && git diff --exit-code packages/types/src/api.d.ts",
     "lint:web": "npm run lint -w @hh/web",
     "test": "npm run test:api && npm run test:web",
     "test:api": "mvn -B -f apps/api test",

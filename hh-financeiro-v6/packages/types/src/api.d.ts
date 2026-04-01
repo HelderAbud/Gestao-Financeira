@@ -68,6 +68,22 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/insights/monthly-analysis": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["monthlyInsightAnalysis"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/expenses": {
         parameters: {
             query?: never;
@@ -272,6 +288,11 @@ export interface components {
             totalInvestments?: number;
             balance?: number;
         };
+        MonthlyInsightResponse: {
+            text?: string;
+            /** @enum {string} */
+            mode?: "OPENAI" | "RULE_BASED";
+        };
         ExpenseCreateRequest: {
             description: string;
             amount: number;
@@ -463,6 +484,28 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["MonthlySummaryResponse"];
+                };
+            };
+        };
+    };
+    monthlyInsightAnalysis: {
+        parameters: {
+            query: {
+                year: number;
+                month: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["MonthlyInsightResponse"];
                 };
             };
         };

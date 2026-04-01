@@ -10,7 +10,13 @@ npm run test:web    # Vitest: testes TS/React utilitários
 npm run test        # Ambos
 ```
 
-GitHub Actions (`.github/workflows/ci.yml`): `mvn test` → `npm run generate:types:snapshot` → `npm run test:web` → `npm run build -w @hh/web` → verificação de drift dos tipos.
+GitHub Actions (na **raiz do repositório Git** Gestão Financeira: [`.github/workflows/ci.yml`](../../.github/workflows/ci.yml)): `mvn test` → `npm run generate:types:snapshot` → `git diff` em `packages/types/src/api.d.ts` (sem drift) → `npm run test:web` → `npm run build -w @hh/web`.
+
+Localmente, após alterar DTOs/OpenAPI, alinhe os tipos e confirme que não há diferença face ao commit:
+
+```bash
+npm run verify:types
+```
 
 ---
 

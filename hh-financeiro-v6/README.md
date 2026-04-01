@@ -4,9 +4,36 @@
 
 **Gestão financeira pessoal — API + web no mesmo monorepo**
 
-[Documentação técnica](#-documentação-técnica) · [Como rodar local](#-desenvolvimento-local) · [Deploy na nuvem](docs/DEPLOY.md)
+[Documentação técnica](#-documentação-técnica) · [Como rodar local](#-desenvolvimento-local) · [Deploy na nuvem](docs/DEPLOY.md) · [**Próximos passos (junior)**](docs/PASSO_A_PASSO_JUNIOR.md)
 
 </div>
+
+---
+
+## Problema e solução
+
+| | |
+|--|--|
+| **Problema** | Planilhas e apps genéricos não mostram, num só sítio, receitas, despesas, investimento, metas e orçamentos — nem ajudam a **ler o mês** nem a priorizar ações. |
+| **Solução** | **HH Financeiro** reúne estes dados numa API e numa web, com **resumo mensal**, **isolamento por utilizador (JWT)** e **análise textual do mês**: com `OPENAI_API_KEY` na API, o texto pode ser gerado por modelo de linguagem; sem chave, usa um **resumo determinístico** a partir dos mesmos números. |
+
+---
+
+## Resumo para LinkedIn / vitrine (copiar)
+
+**GitHub:** https://github.com/HelderAbud/Gestao-Financeira
+
+**Gestão Financeira (HH Financeiro)**
+
+Aplicação full stack para acompanhar receitas, despesas, assinaturas, metas de poupança e orçamentos mensais, com resumo agregado e dados isolados por utilizador (JWT).
+
+**Tecnologias:** Java 21, Spring Boot 3, Spring Security, PostgreSQL, Flyway, Next.js, TanStack Query, OpenAPI / Swagger
+
+**Destaques:**
+
+- Cenário real de produto (finanças pessoais)
+- API REST versionada + web no mesmo monorepo
+- Análise do mês (`GET /api/v1/insights/monthly-analysis`) com IA opcional (OpenAI) ou resumo automático
 
 ---
 
@@ -18,6 +45,16 @@
 | **API (Swagger)** | _ex.: `https://sua-api.onrender.com/swagger-ui.html`_ |
 
 > Substitua os placeholders acima pelos URLs reais após seguir [docs/DEPLOY.md](docs/DEPLOY.md). Um link clicável aumenta muito a visibilidade do projeto em processos seletivos.
+
+### Checklist portfólio / LinkedIn (preencha à mão)
+
+| Campo | O que colocar |
+|--------|----------------|
+| `[PREENCHER]` **Pitch em uma linha** | Ex.: *Gestão financeira pessoal full stack — receitas, despesas, metas, JWT, Next.js + Spring.* |
+| `[PREENCHER]` **URL do repositório público** | `https://github.com/[seu-usuario]/[nome-do-repo]` |
+| `[PREENCHER]` **Post ou carrossel LinkedIn** | Link para publicação que apresenta o projeto |
+| `[PREENCHER]` **Diferencial / IA (futuro)** | Ex.: *Roadmap: insights de gastos com IA — ainda não implementado* (seja honesto) |
+| `[PREENCHER]` **Contato** | E-mail ou LinkedIn para recrutadores |
 
 ---
 
@@ -46,6 +83,7 @@ Pessoas que querem **registar e analisar finanças pessoais ou domésticas** num
 - Migrações com **Flyway**, testes com **JUnit/Mockito** e integração com **H2**.
 - Frontend com **TanStack Query**, layout responsivo e **Vitest** em utilitários.
 - **GitHub Actions** (API + tipos + web) e preparação para **deploy** (Vercel + Render/Neon ou equivalentes).
+- Integração opcional com **OpenAI** para texto de análise mensal (`hh.ai` / `OPENAI_API_KEY`).
 
 ---
 
@@ -107,6 +145,7 @@ hh-financeiro-v6/
 ## Funcionalidades (web + API)
 
 - Resumo mensal (receitas, saídas, investimento, saldo)
+- **Análise textual do mês** (dashboard) — ver secção [Problema e solução](#problema-e-solução) e variável `OPENAI_API_KEY` em [`.env.example`](.env.example)
 - Despesas e receitas por período
 - Assinaturas (vínculo opcional em despesas)
 - Metas com depósitos e barra de progresso
@@ -162,7 +201,7 @@ npm run generate:types:snapshot
 
 ## CI (GitHub Actions)
 
-[`.github/workflows/ci.yml`](.github/workflows/ci.yml) — testes API, geração de tipos, testes web, build Next, verificação de drift do `api.d.ts`.
+O workflow ficheiro na **raiz do repositório Git** (pasta Gestão Financeira): [`.github/workflows/ci.yml`](../.github/workflows/ci.yml) — testes API, `npm run generate:types:snapshot` + verificação de drift do `api.d.ts`, testes web, build Next. Localmente: `npm run verify:types` (na pasta do monorepo).
 
 ---
 
