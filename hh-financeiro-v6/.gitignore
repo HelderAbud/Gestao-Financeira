@@ -1,17 +1,38 @@
-# Root
+# --- Node / npm (todas as pastas do monorepo) ---
 node_modules/
-dist/
+**/node_modules/
+
+# --- Next.js (build local + output standalone para Docker) ---
+# Nunca versionar .next/ — inclui standalone/, static/, cache, trace, etc.
+.next/
+**/.next/
+out/
+**/out/
+
+# --- Ferramentas / artefactos ---
 .turbo/
+dist/
+**/dist/
 *.log
+coverage/
+**/coverage/
+
+# --- Ambiente (não commitar segredos) ---
 .env
 .env.local
-.DS_Store
+.env.*.local
+!.env.example
 
-# Java / Maven
+# --- OS / IDE ---
+.DS_Store
+Thumbs.db
+
+# --- Java / Maven ---
 apps/api/target/
 apps/api/.idea/
 *.iml
 
-# Next.js
-apps/web/.next/
-apps/web/out/
+# Se node_modules ou .next tiverem sido adicionados ao Git por engano, remova do índice
+# (mantém pastas no disco) e faça commit:
+#   git rm -r --cached node_modules apps/web/.next packages/types/node_modules 2>nul
+#   (PowerShell: ignore erros se alguma pasta não existir no índice)

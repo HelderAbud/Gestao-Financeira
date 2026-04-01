@@ -1,0 +1,4 @@
+# Build Next.js (inclui standalone para Docker — nunca commitar)
+.next/
+out/
+node_modules/
