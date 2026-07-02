@@ -176,7 +176,7 @@ docker compose up --build
 ```
 
 - Web: http://localhost:3000  
-- API: http://localhost:8080 · Swagger: http://localhost:8080/swagger-ui.html  
+- API: http://localhost:8090 · Swagger: http://localhost:8090/swagger-ui.html
 
 ### Opção B — só Postgres + API + Web
 

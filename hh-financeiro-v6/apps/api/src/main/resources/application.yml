@@ -17,7 +17,8 @@ spring:
     enabled: true
 
 server:
-  port: 8080
+  # 8090 por omissão para não colidir com LojApp (8080) e outras APIs locais
+  port: 8090
 
 management:
   endpoints:
