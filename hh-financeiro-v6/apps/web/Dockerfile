@@ -12,7 +12,7 @@ COPY apps/web ./apps/web
 COPY packages/types ./packages/types
 
 WORKDIR /app/apps/web
-ARG NEXT_PUBLIC_API_URL=http://localhost:8080
+ARG NEXT_PUBLIC_API_URL=http://localhost:8090
 ENV NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL
 ENV NEXT_TELEMETRY_DISABLED=1
 RUN npm run build

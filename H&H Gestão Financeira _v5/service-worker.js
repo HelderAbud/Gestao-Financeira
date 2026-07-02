@@ -1,5 +1,7 @@
 
-const CACHE_NAME = "hh-v5-cache-1";
+const CACHE_NAME = "hh-v5-cache-2";
+
+/** Só origem do site — addAll falha se um URL falhar; CDN tratado à parte. */
 const APP_SHELL = [
   "./",
   "./index.html",
@@ -10,12 +12,22 @@ const APP_SHELL = [
   "./manifest.json",
   "./icons/icon-192.svg",
   "./icons/icon-512.svg",
-  "https://cdn.jsdelivr.net/npm/chart.js"
 ];
 
 self.addEventListener("install", event => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then(cache => cache.addAll(APP_SHELL)).catch(()=>{})
+    caches.open(CACHE_NAME).then(async cache => {
+      try {
+        await cache.addAll(APP_SHELL);
+      } catch {
+        /* instalação parcial — fetch em runtime */
+      }
+      try {
+        await cache.add("https://cdn.jsdelivr.net/npm/chart.js");
+      } catch {
+        /* Chart carrega na rede se falhar cache */
+      }
+    })
   );
   self.skipWaiting();
 });
@@ -35,12 +47,11 @@ self.addEventListener("fetch", event => {
 
   const isNavigation = req.mode === "navigate";
   if (isNavigation) {
-    // network-first para documentos; fallback cache
     event.respondWith(
       fetch(req)
         .then(res => {
           const copy = res.clone();
-          caches.open(CACHE_NAME).then(c => c.put(req, copy)).catch(()=>{});
+          caches.open(CACHE_NAME).then(c => c.put(req, copy)).catch(() => {});
           return res;
         })
         .catch(() => caches.match(req).then(r => r || caches.match("./index.html")))
@@ -48,15 +59,16 @@ self.addEventListener("fetch", event => {
     return;
   }
 
-  // cache-first para assets
+  // Cache-first para ficheiros estáticos — NUNCA devolver index.html em vez de .js/.css
   event.respondWith(
     caches.match(req).then(cached => {
       if (cached) return cached;
       return fetch(req).then(res => {
+        if (!res.ok) return res;
         const copy = res.clone();
-        caches.open(CACHE_NAME).then(c => c.put(req, copy)).catch(()=>{});
+        caches.open(CACHE_NAME).then(c => c.put(req, copy)).catch(() => {});
         return res;
       });
-    }).catch(() => caches.match("./index.html"))
+    }).catch(() => fetch(req).catch(() => Response.error()))
   );
 });
