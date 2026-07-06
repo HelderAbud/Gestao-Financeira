@@ -4,7 +4,7 @@
 
 **Gestão financeira pessoal — API + web no mesmo monorepo**
 
-[Documentação técnica](#-documentação-técnica) · [Como rodar local](#-desenvolvimento-local) · [Deploy na nuvem](docs/DEPLOY.md) · [**Próximos passos (junior)**](docs/PASSO_A_PASSO_JUNIOR.md)
+[Documentação técnica](#-documentação-técnica) · [Como rodar local](#-desenvolvimento-local) · [Deploy Railway (recomendado)](docs/DEPLOY-RAILWAY.md) · [Deploy Render/Neon](docs/DEPLOY.md) · [**Próximos passos (junior)**](docs/PASSO_A_PASSO_JUNIOR.md)
 
 </div>
 
@@ -118,7 +118,9 @@ Pessoas que querem **registar e analisar finanças pessoais ou domésticas** num
 | | |
 |--|--|
 | **Índice** | [docs/README.md](docs/README.md) |
-| **Deploy (Vercel, Render, Neon, env)** | **[docs/DEPLOY.md](docs/DEPLOY.md)** |
+| **Deploy (Railway + Vercel)** | **[docs/DEPLOY-RAILWAY.md](docs/DEPLOY-RAILWAY.md)** |
+| **Deploy (Render + Neon)** | [docs/DEPLOY.md](docs/DEPLOY.md) |
+| **Segurança pré-deploy** | [docs/SEGURANCA-DEPLOY.md](docs/SEGURANCA-DEPLOY.md) |
 | **Arquitetura + diagramas** | [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) |
 | **Fluxos** | [docs/FLOWS.md](docs/FLOWS.md) |
 | **Testes** | [docs/TESTING.md](docs/TESTING.md) |
@@ -167,7 +169,9 @@ Detalhes: [docs/TESTING.md](docs/TESTING.md).
 
 ## Desenvolvimento local
 
-**Requisitos:** Node 20+, Java 21+, Maven, Docker (opcional para Postgres).
+**Requisitos:** Node 20+, Java 21+, Maven, Docker (Postgres + stack completa).
+
+> **Windows:** use **Ubuntu/WSL** para `docker compose` — no PowerShell sem Docker Desktop o comando `docker` não existe. Caminho típico: `/mnt/c/Users/.../Gestão Financeira/hh-financeiro-v6`.
 
 ### Opção A — Docker Compose (tudo)
 

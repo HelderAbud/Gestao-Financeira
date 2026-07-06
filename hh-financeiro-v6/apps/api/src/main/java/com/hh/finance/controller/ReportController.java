@@ -37,6 +37,8 @@ public class ReportController {
     public MonthlySummaryResponse monthlySummary(
             @RequestParam
                     @Parameter(description = "Ano civil (ex.: 2026)", example = "2026")
+                    @Min(2000)
+                    @Max(2100)
                     int year,
             @RequestParam @Min(1) @Max(12)
                     @Parameter(description = "Mês (1–12)", example = "4")

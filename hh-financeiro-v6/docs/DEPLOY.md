@@ -1,6 +1,10 @@
 # Deploy na nuvem — HH Financeiro v6
 
-Objetivo: **URL pública** para o recrutador abrir o site e, se quiser, o Swagger. Sugestão de stack com **free tier**: **Neon** (Postgres) + **Render** (API Java) + **Vercel** (Next.js).
+Objetivo: **URL pública** para o recrutador abrir o site e, se quiser, o Swagger.
+
+**Recomendado (Neon com UI instável ou sem Docker no Windows):** [DEPLOY-RAILWAY.md](./DEPLOY-RAILWAY.md) — Postgres + API no Railway + front na Vercel.
+
+Stack alternativa: **Neon** (Postgres) + **Render** (API Java) + **Vercel** (Next.js).
 
 ## Ordem recomendada
 

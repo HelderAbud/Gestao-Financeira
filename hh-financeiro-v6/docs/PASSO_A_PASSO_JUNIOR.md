@@ -72,7 +72,7 @@ Este guia complementa o que já está no repositório (API, web, testes, [DEPLOY
 
 ## Ordem mínima recomendada
 
-1. API + DB online → Swagger OK  
+1. API + DB online → Swagger OK — ver **[DEPLOY-RAILWAY.md](DEPLOY-RAILWAY.md)** se Neon falhar  
 2. Front online → `NEXT_PUBLIC_API_URL` correto  
 3. README com links  
 4. README do perfil + pins  
