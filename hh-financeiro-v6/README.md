@@ -46,15 +46,15 @@ Aplicação full stack para acompanhar receitas, despesas, assinaturas, metas de
 
 > Substitua os placeholders acima pelos URLs reais após seguir [docs/DEPLOY.md](docs/DEPLOY.md). Um link clicável aumenta muito a visibilidade do projeto em processos seletivos.
 
-### Checklist portfólio / LinkedIn (preencha à mão)
+### Checklist portfólio / LinkedIn
 
-| Campo | O que colocar |
-|--------|----------------|
-| `[PREENCHER]` **Pitch em uma linha** | Ex.: *Gestão financeira pessoal full stack — receitas, despesas, metas, JWT, Next.js + Spring.* |
-| `[PREENCHER]` **URL do repositório público** | `https://github.com/[seu-usuario]/[nome-do-repo]` |
-| `[PREENCHER]` **Post ou carrossel LinkedIn** | Link para publicação que apresenta o projeto |
-| `[PREENCHER]` **Diferencial / IA (futuro)** | Ex.: *Roadmap: insights de gastos com IA — ainda não implementado* (seja honesto) |
-| `[PREENCHER]` **Contato** | E-mail ou LinkedIn para recrutadores |
+| Campo | Valor |
+|--------|--------|
+| **Pitch em uma linha** | Gestão financeira pessoal full stack — receitas, despesas, metas e orçamentos, com JWT, Next.js + Spring e análise do mês (OpenAI opcional ou resumo determinístico). |
+| **URL do repositório público** | https://github.com/HelderAbud/Gestao-Financeira |
+| **Post ou carrossel LinkedIn** | Pendente — publicar após Fase A (perfil já no Contato) |
+| **Diferencial / IA** | Já implementado: `GET /api/v1/insights/monthly-analysis` com OpenAI se houver chave; sem chave, resumo determinístico. |
+| **Contato** | [LinkedIn](https://www.linkedin.com/in/helder-fernandes-abud-0b0233238/) · [GitHub](https://github.com/HelderAbud) · tuga.abud@gmail.com |
 
 ---
 
