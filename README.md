@@ -576,7 +576,7 @@ refactor: refatoração sem mudança de comportamento
 
 ## 📄 Licença
 
-Distribuído sob a licença MIT. Veja `LICENSE` para mais informações.
+Distribuído sob a licença [MIT](LICENSE). Copyright (c) 2026 Helder Abud.
 
 ---
 
