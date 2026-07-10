@@ -1,7 +1,7 @@
 # Plano executado — Gestão Financeira próximos passos
 
 **Data:** 2026-07-02  
-**Trilha:** Normal (Rheyder Method v1.2)  
+**Trilha:** Normal (Helder Method v1.2)  
 **Repo:** `hh-financeiro-v6` dentro de `Gestao-Financeira`
 
 ## Fatias
