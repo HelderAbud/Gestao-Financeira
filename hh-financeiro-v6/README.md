@@ -217,4 +217,4 @@ Dados persistidos em texto na base; em produção use **HTTPS**, **segredos fort
 
 ## Licença
 
-MIT (alinhar com o projeto original H&H se necessário).
+Distribuído sob a licença [MIT](../LICENSE). Copyright (c) 2026 Helder Abud.
