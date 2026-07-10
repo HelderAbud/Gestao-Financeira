@@ -66,10 +66,14 @@
 **Trilha:** Simple
 
 **Tarefas**
-- [ ] Preencher tabela "Checklist portfólio / LinkedIn" no [`README.md`](README.md)
-- [ ] Pitch 1 linha definitivo
-- [ ] URL GitHub confirmada
-- [ ] Plano: `.cursor/plans/plan-YYYY-MM-DD-hh-readme-checklist.md`
+- [x] Preencher tabela "Checklist portfólio / LinkedIn" no [`README.md`](README.md)
+- [x] Pitch 1 linha definitivo
+- [x] URL GitHub confirmada
+- [x] Plano: `.cursor/plans/plan-2026-07-09-hh-readme-checklist.md`
+
+**Validação:** zero `[PREENCHER]` na tabela checklist; Demo online continua pendente (Dia 8).
+
+**Evidência:** `docs/grill-logs/validation-2026-07-09-trilha-dia-1.md`
 
 **Prompt Cursor**
 ```text
