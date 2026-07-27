@@ -5,6 +5,7 @@
 | [DEPLOY.md](./DEPLOY.md) | **Deploy** (Vercel, Render, Neon, variáveis) |
 | [PASSO_A_PASSO_JUNIOR.md](./PASSO_A_PASSO_JUNIOR.md) | Checklist **fora do código** (URLs, GitHub, LinkedIn) |
 | [ARCHITECTURE.md](./ARCHITECTURE.md) | Stack, diagramas (Mermaid), camadas da API |
+| [portfolio/etapas.md](./portfolio/etapas.md) | Narrativa das 7 etapas (portfólio / entrevista) |
 | [FLOWS.md](./FLOWS.md) | Fluxos de autenticação e pedidos |
 | [TESTING.md](./TESTING.md) | Testes automatizados e estrutura `src/test/java` |
 | [STRUCTURE.md](./STRUCTURE.md) | Organização de pastas do monorepo |
