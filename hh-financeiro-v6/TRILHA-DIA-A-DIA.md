@@ -85,12 +85,16 @@ Trilha Simple. Não inventar URLs fake; usar "pendente deploy" onde aplicável.
 
 ### Dia 2 — Screenshots
 
-- [ ] `docs/screenshots/landing.png` — página inicial
-- [ ] `docs/screenshots/dashboard.png` — resumo mensal
-- [ ] Colar tabela de imagens no README (modelo já existe no README)
-- [ ] Dados fictícios apenas
+**Trilha:** Simple
+
+- [x] `docs/screenshots/landing.png` — página inicial
+- [x] `docs/screenshots/dashboard.png` — resumo mensal
+- [x] Colar tabela de imagens no README (modelo já existe no README)
+- [x] Dados fictícios apenas
 
 **Validação:** 2 imagens visíveis no README.
+
+**Evidência:** `docs/grill-logs/validation-2026-07-27-trilha-dia-2.md`
 
 ---
 
