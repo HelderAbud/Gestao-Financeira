@@ -89,14 +89,11 @@ Pessoas que querem **registar e analisar finanças pessoais ou domésticas** num
 
 ## Screenshots
 
-1. Guarde as imagens em [`docs/screenshots/`](docs/screenshots/README.md) (ex.: `landing.png`, `dashboard.png`).
-2. Cole no README acima desta secção, por exemplo:
+Dados fictícios (ambiente local). Mais capturas: [`docs/screenshots/`](docs/screenshots/README.md).
 
-```markdown
 | Início | Resumo |
 |--------|--------|
 | ![Início](docs/screenshots/landing.png) | ![Resumo](docs/screenshots/dashboard.png) |
-```
 
 ---
 
