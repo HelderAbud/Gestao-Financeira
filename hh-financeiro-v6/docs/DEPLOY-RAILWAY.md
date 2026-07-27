@@ -1,4 +1,4 @@
-# Deploy com Railway + Vercel (recomendado)
+﻿# Deploy com Railway + Vercel (recomendado)
 
 Guia passo a passo quando **Neon** falha na UI ou **Docker** só roda no **Ubuntu/WSL**. Não exige Docker no PC Windows.
 
@@ -43,7 +43,7 @@ Guia passo a passo quando **Neon** falha na UI ou **Docker** só roda no **Ubunt
 | `SPRING_DATASOURCE_USERNAME` | valor de `PGUSER` |
 | `SPRING_DATASOURCE_PASSWORD` | valor de `PGPASSWORD` |
 | `HH_JWT_SECRET` | string aleatória com **32+ caracteres** |
-| `HH_CORS_ORIGINS` | `http://localhost:3000` *(atualize depois com URL Vercel)* |
+| `HH_CORS_ORIGINS` | `http://localhost:5175` *(atualize depois com URL Vercel)* |
 
 4. **Health check / path:** `/actuator/health`
 5. **Deploy** e aguarde logs: Flyway deve aplicar migrations (`V1`, `V2`).
@@ -79,7 +79,7 @@ Esperado: `"status":"UP"` e Swagger abrindo.
 No Railway, serviço **API**, edite `HH_CORS_ORIGINS`:
 
 ```text
-https://SUA-URL.vercel.app,http://localhost:3000
+https://SUA-URL.vercel.app,http://localhost:5175
 ```
 
 Redeploy da API. Teste login no site público — consola do browser **sem** erro CORS.

@@ -7,5 +7,6 @@ RUN mvn -q -DskipTests package
 FROM eclipse-temurin:21-jre-alpine
 WORKDIR /app
 COPY --from=build /app/target/hh-finance-api-*.jar app.jar
-EXPOSE 8090
+EXPOSE 8083
+ENV SERVER_PORT=8083
 ENTRYPOINT ["java", "-jar", "app.jar"]

@@ -1,4 +1,4 @@
-# Trilha dia a dia — HH Financeiro v6
+﻿# Trilha dia a dia — HH Financeiro v6
 
 > **Metodologia:** [Helder Method v1.2](../../Agentes/helder-method-v1.2-resumo-compartilhavel.md) + [skills-pessoal](../../Agentes/skills-pessoal/skills-pessoal/README-pt_br.md) ([WORKFLOW](../../Agentes/skills-pessoal/skills-pessoal/WORKFLOW.md))  
 > **Iniciativa:** Portfólio carro-chefe #2 — deploy + apresentação (doc já madura)  
@@ -142,7 +142,7 @@ Trilha Simple. Não inventar URLs fake; usar "pendente deploy" onde aplicável.
 
 - [ ] New Project → Postgres
 - [ ] Serviço API: Dockerfile `apps/api/Dockerfile`
-- [ ] Variáveis: datasource, JWT, CORS `http://localhost:3000` (temporário)
+- [ ] Variáveis: datasource, JWT, CORS `http://localhost:5175` (temporário)
 - [ ] Flyway V1, V2… aplicadas
 - [ ] `/actuator/health` UP
 

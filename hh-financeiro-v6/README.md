@@ -1,4 +1,4 @@
-# HH Financeiro
+﻿# HH Financeiro
 
 <div align="center">
 
@@ -177,8 +177,8 @@ Detalhes: [docs/TESTING.md](docs/TESTING.md).
 docker compose up --build
 ```
 
-- Web: http://localhost:3000  
-- API: http://localhost:8090 · Swagger: http://localhost:8090/swagger-ui.html
+- Web: http://localhost:5175  
+- API: http://localhost:8083 · Swagger: http://localhost:8083/swagger-ui.html
 
 ### Opção B — só Postgres + API + Web
 
