@@ -129,10 +129,12 @@ Trilha Simple. Não inventar URLs fake; usar "pendente deploy" onde aplicável.
 | Trilha | Normal |
 
 **Tarefas**
-- [ ] Ler [`docs/DEPLOY-RAILWAY.md`](docs/DEPLOY-RAILWAY.md) completo
-- [ ] Ler [`docs/SEGURANCA-DEPLOY.md`](docs/SEGURANCA-DEPLOY.md)
-- [ ] Plan: `.cursor/plans/plan-YYYY-MM-DD-hh-deploy-railway.md`
-- [ ] Gerar `HH_JWT_SECRET` (32+ chars) — **HITL**, não commitar
+- [x] Ler [`docs/DEPLOY-RAILWAY.md`](docs/DEPLOY-RAILWAY.md) completo
+- [x] Ler [`docs/SEGURANCA-DEPLOY.md`](docs/SEGURANCA-DEPLOY.md)
+- [x] Plan: [`.cursor/plans/plan-2026-07-27-hh-deploy-railway.md`](.cursor/plans/plan-2026-07-27-hh-deploy-railway.md)
+- [x] Gerar `HH_JWT_SECRET` (32+ chars) — **HITL**, não commitar (só password manager / chat)
+
+**Evidência:** `docs/grill-logs/validation-2026-07-27-trilha-dia-4.md`
 
 ---
 
