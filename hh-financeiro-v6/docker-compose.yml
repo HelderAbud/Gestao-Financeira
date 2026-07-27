@@ -4,9 +4,10 @@ services:
     environment:
       POSTGRES_DB: hh_finance
       POSTGRES_USER: hh
-      POSTGRES_PASSWORD: hh_secret_change_me
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?defina POSTGRES_PASSWORD no .env}
     ports:
-      - "5432:5432"
+      # Host 5434 — matriz portfólio (evita colisão com LojApp em 5433)
+      - "5434:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
     healthcheck:
@@ -20,13 +21,15 @@ services:
       context: ./apps/api
       dockerfile: Dockerfile
     ports:
-      - "8090:8090"
+      - "8083:8083"
     environment:
       SPRING_PROFILES_ACTIVE: docker
+      SERVER_PORT: 8083
       SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/hh_finance
       SPRING_DATASOURCE_USERNAME: hh
-      SPRING_DATASOURCE_PASSWORD: hh_secret_change_me
-      HH_JWT_SECRET: "${HH_JWT_SECRET:-dev-only-change-this-secret-min-32-chars-long!!}"
+      SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD:?defina POSTGRES_PASSWORD no .env}
+      HH_JWT_SECRET: ${HH_JWT_SECRET:?defina HH_JWT_SECRET no .env}
+      HH_CORS_ORIGINS: ${HH_CORS_ORIGINS:-http://localhost:5175,http://127.0.0.1:5175}
     depends_on:
       db:
         condition: service_healthy
@@ -35,10 +38,13 @@ services:
     build:
       context: .
       dockerfile: apps/web/Dockerfile
+      args:
+        NEXT_PUBLIC_API_URL: http://localhost:8083
     ports:
-      - "3000:3000"
+      # Host 5175 → container Next na 3000
+      - "5175:3000"
     environment:
-      NEXT_PUBLIC_API_URL: http://localhost:8090
+      NEXT_PUBLIC_API_URL: http://localhost:8083
     depends_on:
       - api
 

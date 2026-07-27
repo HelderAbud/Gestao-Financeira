@@ -2,9 +2,9 @@ spring:
   application:
     name: hh-finance-api
   datasource:
-    url: jdbc:postgresql://localhost:5432/hh_finance
-    username: hh
-    password: hh_secret_change_me
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5434/hh_finance}
+    username: ${SPRING_DATASOURCE_USERNAME:hh}
+    password: ${SPRING_DATASOURCE_PASSWORD:}
   jpa:
     hibernate:
       ddl-auto: validate
@@ -17,8 +17,8 @@ spring:
     enabled: true
 
 server:
-  # 8090 por omissão para não colidir com LojApp (8080) e outras APIs locais
-  port: 8090
+  # Host 8083 — matriz portfólio (ver Agentes/PORTFOLIO-PORTS.md)
+  port: ${SERVER_PORT:8083}
 
 management:
   endpoints:
@@ -38,10 +38,10 @@ springdoc:
 
 hh:
   jwt:
-    secret: ${HH_JWT_SECRET:dev-only-change-this-secret-min-32-chars-long!!}
+    secret: ${HH_JWT_SECRET}
     expiration-ms: 86400000
   cors:
-    allowed-origins: ${HH_CORS_ORIGINS:http://localhost:3000,http://127.0.0.1:3000}
+    allowed-origins: ${HH_CORS_ORIGINS:http://localhost:5175,http://127.0.0.1:5175}
   ai:
     # Opcional: sem chave, /insights/monthly-analysis usa resumo baseado em regras.
     openai-api-key: ${OPENAI_API_KEY:}
@@ -53,6 +53,6 @@ spring:
     activate:
       on-profile: docker
   datasource:
-    url: jdbc:postgresql://db:5432/hh_finance
-    username: hh
-    password: hh_secret_change_me
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://db:5432/hh_finance}
+    username: ${SPRING_DATASOURCE_USERNAME:hh}
+    password: ${SPRING_DATASOURCE_PASSWORD:}

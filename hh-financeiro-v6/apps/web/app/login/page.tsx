@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useMutation } from "@tanstack/react-query";
 import Link from "next/link";
@@ -43,7 +43,7 @@ export default function LoginPage() {
           <p className="mt-2 text-sm text-hh-muted">
             API:{" "}
             <span className="font-mono text-xs text-slate-400">
-              {process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8090"}
+              {process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8083"}
             </span>
           </p>
         </div>

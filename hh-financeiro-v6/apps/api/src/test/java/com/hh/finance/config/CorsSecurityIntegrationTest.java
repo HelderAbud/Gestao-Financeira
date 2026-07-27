@@ -25,14 +25,14 @@ class CorsSecurityIntegrationTest {
     void authRegisterPreflightFromLocalWebIsAllowed() throws Exception {
         mockMvc.perform(
                         options("/api/v1/auth/register")
-                                .header(HttpHeaders.ORIGIN, "http://localhost:3000")
+                                .header(HttpHeaders.ORIGIN, "http://localhost:5175")
                                 .header(HttpHeaders.ACCESS_CONTROL_REQUEST_METHOD, "POST")
                                 .header(HttpHeaders.ACCESS_CONTROL_REQUEST_HEADERS, "content-type"))
                 .andExpect(status().isOk())
                 .andExpect(
                         header().string(
                                         HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN,
-                                        "http://localhost:3000"));
+                                        "http://localhost:5175"));
     }
 
     @Test
@@ -44,13 +44,13 @@ class CorsSecurityIntegrationTest {
                         .formatted(System.nanoTime());
         mockMvc.perform(
                         post("/api/v1/auth/register")
-                                .header(HttpHeaders.ORIGIN, "http://localhost:3000")
+                                .header(HttpHeaders.ORIGIN, "http://localhost:5175")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(body))
                 .andExpect(status().isOk())
                 .andExpect(
                         header().string(
                                         HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN,
-                                        "http://localhost:3000"));
+                                        "http://localhost:5175"));
     }
 }

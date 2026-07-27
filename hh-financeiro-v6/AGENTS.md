@@ -1,4 +1,4 @@
-# AGENTS.md — HH Financeiro v6
+﻿# AGENTS.md — HH Financeiro v6
 
 Guia principal para agentes e contribuidores. Detalhes: [README.md](README.md), [docs/STRUCTURE.md](docs/STRUCTURE.md), [docs/TESTING.md](docs/TESTING.md), [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
 
@@ -26,7 +26,7 @@ Guia principal para agentes e contribuidores. Detalhes: [README.md](README.md), 
 | Lint web | `npm run lint:web` |
 | Build | `npm run build` |
 
-Swagger local (compose ou API a correr): `http://localhost:8090/swagger-ui.html`
+Swagger local (compose ou API a correr): `http://localhost:8083/swagger-ui.html`
 
 ## Regras de arquitetura
 

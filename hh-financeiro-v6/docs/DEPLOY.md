@@ -1,4 +1,4 @@
-# Deploy na nuvem — HH Financeiro v6
+﻿# Deploy na nuvem — HH Financeiro v6
 
 Objetivo: **URL pública** para o recrutador abrir o site e, se quiser, o Swagger.
 
@@ -83,7 +83,7 @@ https://hh-financeiro.vercel.app,https://hh-financeiro-git-main-seuuser.vercel.a
 Desenvolvimento local continua a funcionar com o default em `application.yml` ou:
 
 ```text
-HH_CORS_ORIGINS=http://localhost:3000,http://127.0.0.1:3000
+HH_CORS_ORIGINS=http://localhost:5175,http://127.0.0.1:3000
 ```
 
 ---
