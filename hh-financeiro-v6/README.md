@@ -119,6 +119,7 @@ Dados fictícios (ambiente local). Mais capturas: [`docs/screenshots/`](docs/scr
 | **Deploy (Render + Neon)** | [docs/DEPLOY.md](docs/DEPLOY.md) |
 | **Segurança pré-deploy** | [docs/SEGURANCA-DEPLOY.md](docs/SEGURANCA-DEPLOY.md) |
 | **Arquitetura + diagramas** | [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) |
+| **Etapas do projeto (portfólio)** | [docs/portfolio/etapas.md](docs/portfolio/etapas.md) |
 | **Fluxos** | [docs/FLOWS.md](docs/FLOWS.md) |
 | **Testes** | [docs/TESTING.md](docs/TESTING.md) |
 | **Entrevistas** | [docs/ENTREVISTAS.md](docs/ENTREVISTAS.md) |

@@ -100,6 +100,8 @@ Trilha Simple. Não inventar URLs fake; usar "pendente deploy" onde aplicável.
 
 ### Dia 3 — `docs/portfolio/etapas.md` 📋
 
+**Trilha:** Simple
+
 **7 etapas**
 1. Monorepo API + Web + types  
 2. JWT + isolamento `user_id`  
@@ -109,7 +111,14 @@ Trilha Simple. Não inventar URLs fake; usar "pendente deploy" onde aplicável.
 6. Docker Compose local  
 7. Deploy Railway + Vercel  
 
+**Tarefas**
+- [x] Criar [`docs/portfolio/etapas.md`](docs/portfolio/etapas.md) com as 7 etapas
+- [x] Linkar no README (Documentação técnica)
+- [x] Etapa 7 marcada pendente (sem URLs inventadas)
+
 **DoD Fase A:** checklist + screenshots + etapas linkadas.
+
+**Evidência:** `docs/grill-logs/validation-2026-07-27-trilha-dia-3.md`
 
 ---
 
